@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Datos Personales</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('FondoPantalla.jpg') center/cover fixed no-repeat;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        h2 {
+            color: #ffffff; /* Rojo */
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ffffff; /* Blanco */
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: calc(100% - 10px);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: rgb(39, 39, 39); /* Blanco semi-transparente */
+            color: #ffffff; /* Blanco */
+        }
+        .btn {
+            background-color: #ff0000; /* Rojo */
+            color: #ffffff; /* Blanco */
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #990000; /* Rojo más oscuro al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Formulario de Datos Personales</h2>
+        <form id="datosFormulario">
+            <div class="form-group">
+                <label for="apellidoPaterno">Apellido Paterno:</label>
+                <input type="text" id="apellidoPaterno" name="apellidoPaterno" required>
+            </div>
+            <div class="form-group">
+                <label for="apellidoMaterno">Apellido Materno o del Esposo:</label>
+                <input type="text" id="apellidoMaterno" name="apellidoMaterno" required>
+            </div>
+            <div class="form-group">
+                <label for="nombres">Nombres:</label>
+                <input type="text" id="nombres" name="nombres" required>
+            </div>
+            <div class="form-group">
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" name="dni" required>
+            </div>
+            <div class="form-group">
+                <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+            </div>
+            <div class="form-group">
+                <label for="estadoCivil">Estado Civil:</label>
+                <select id="estadoCivil" name="estadoCivil" required>
+                    <option value="Soltero">Soltero</option>
+                    <option value="Casado">Casado</option>
+                    <option value="Divorciado">Divorciado</option>
+                    <option value="Viudo">Viudo</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="estadoCivil">Sexo:</label>
+                <select id="estadoCivil" name="estadoCivil" required>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="lugarNacimiento">Lugar de Nacimiento:</label>
+                <div class="form-group">
+                    <label for="region">Región:</label>
+                    <select id="region" name="region" onchange="cargarProvincias()" required>
+                        <option value="">Selecciona una región</option>
+                        <!-- Opciones de región se generarán dinámicamente con JavaScript -->
+                    </select>
+                </div>
+    
+                <!-- Campo de selección para la provincia -->
+                <div class="form-group">
+                    <label for="provincia">Provincia:</label>
+                    <select id="provincia" name="provincia" onchange="cargarDistritos()" required>
+                        <option value="">Selecciona una provincia</option>
+                        <!-- Opciones de provincia se generarán dinámicamente con JavaScript -->
+                    </select>
+                </div>
+    
+                <!-- Campo de selección para el distrito -->
+                <div class="form-group">
+                    <label for="distrito">Distrito:</label>
+                    <select id="distrito" name="distrito" required>
+                        <option value="">Selecciona un distrito</option>
+                        <!-- Opciones de distrito se generarán dinámicamente con JavaScript -->
+                    </select>
+                </div>
+            </div>
+            <h3>Domicilio Actual:</h3>
+            <div class="form-group">
+                <label for="region">Región:</label>
+                <input type="text" id="region" name="region" required>
+            </div>
+            <div class="form-group">
+                <label for="provincia">Provincia:</label>
+                <input type="text" id="provincia" name="provincia" required>
+            </div>
+            <div class="form-group">
+                <label for="distrito">Distrito:</label>
+                <input type="text" id="distrito" name="distrito" required>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Avenida/Calle/Jirón:</label>
+                <input type="text" id="direccion" name="direccion" required>
+            </div>
+            <div class="form-group">
+                <label for="urbanizacion">Urbanización-Sector-Caserío:</label>
+                <input type="text" id="urbanizacion" name="urbanizacion">
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <button type="submit" class="btn">Enviar <i class="fas fa-paper-plane"></i></button>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+        const regiones = {
+            "Lima": {
+                "Lima": ["Lima", "Callao"],
+                "Huaura": ["Huacho", "Barranca"],
+                // Otras provincias y distritos de Lima
+            },
+            "Arequipa": {
+                "Arequipa": ["Arequipa", "Camaná"],
+                "Caylloma": ["Chivay", "Tuti"],
+                // Otras provincias y distritos de Arequipa
+            },
+            // Otras regiones del Perú y sus provincias y distritos
+        };
+
+        // Función para cargar las provincias según la región seleccionada
+        function cargarProvincias() {
+            const regionSeleccionada = document.getElementById("region").value;
+            const provinciaSelect = document.getElementById("provincia");
+            provinciaSelect.innerHTML = '<option value="">Selecciona una provincia</option>'; // Limpiar opciones anteriores
+
+            if (regionSeleccionada !== "") {
+                const provincias = Object.keys(regiones[regionSeleccionada]);
+                provincias.forEach(provincia => {
+                    const option = document.createElement("option");
+                    option.text = provincia;
+                    option.value = provincia;
+                    provinciaSelect.appendChild(option);
+                });
+            }
+        }
+
+        // Función para cargar los distritos según la provincia seleccionada
+        function cargarDistritos() {
+            const regionSeleccionada = document.getElementById("region").value;
+            const provinciaSeleccionada = document.getElementById("provincia").value;
+            const distritoSelect = document.getElementById("distrito");
+            distritoSelect.innerHTML = '<option value="">Selecciona un distrito</option>'; // Limpiar opciones anteriores
+
+            if (regionSeleccionada !== "" && provinciaSeleccionada !== "") {
+                const distritos = regiones[regionSeleccionada][provinciaSeleccionada];
+                distritos.forEach(distrito => {
+                    const option = document.createElement("option");
+                    option.text = distrito;
+                    option.value = distrito;
+                    distritoSelect.appendChild(option);
+                });
+            }
+        }
+
+        document.getElementById('datosFormulario').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            // Obtener los valores de los campos del formulario
+            const apellidoPaterno = document.getElementById('apellidoPaterno').value;
+            const apellidoMaterno = document.getElementById('apellidoMaterno').value;
+            const nombres = document.getElementById('nombres').value;
+            const dni = document.getElementById('dni').value;
+            const fechaNacimiento = document.getElementById('fechaNacimiento').value;
+            const estadoCivil = document.getElementById('estadoCivil').value;
+            const sexo = document.querySelector('input[name="sexo"]:checked').value;
+            const regionNacimiento = document.getElementById('regionNacimiento').value;
+            const provinciaNacimiento = document.getElementById('provinciaNacimiento').value;
+            const distritoNacimiento = document.getElementById('distritoNacimiento').value;
+            const region = document.getElementById('region').value;
+            const provincia = document.getElementById('provincia').value;
+            const distrito = document.getElementById('distrito').value;
+            const direccion = document.getElementById('direccion').value;
+            const urbanizacion = document.getElementById('urbanizacion').value;
+            const telefono = document.getElementById('telefono').value;
+            const email = document.getElementById('email').value;
+            const partido = "Accion Popular";
+
+            // Cargar el PDF original
+            const existingPdfBytes = await fetch('FICHA DE AFILIACIÓN AP.pdf').then(res => res.arrayBuffer());
+
+            // Cargar el PDF en pdf-lib
+            const pdfDoc = await PDFLib.PDFDocument.load(existingPdfBytes);
+
+            // Obtener la primera página del PDF
+            const pages = pdfDoc.getPages();
+            const firstPage = pages[0];
+
+            // Definir las coordenadas y el tamaño para los campos de texto
+            const apellidoPaternoCoords = { x: 50, y: 500, size: 12 };
+            const apellidoMaternoCoords = { x: 215, y: 500, size: 12 };
+            const nombresCoords = { x: 400, y: 500, size: 12 };
+            const dniCoords = { x: 50, y: 462, size: 12 };
+            const fechaNacimientoCoords = { x: 180, y: 462, size: 12 };
+            const estadoCivilCoords = { x: 315, y: 462, size: 12 };
+            const sexoCoords = { x: 466, y: 462, size: 12 };
+            const lugarNacimientoCoords = { x: 50, y: 425, size: 12 };
+
+            const regionCoords = { x: 50, y: 367, size: 12 };
+            const provinciaCoords = { x: 220, y: 367, size: 12 };
+            const distritoCoords = { x: 400, y: 367, size: 12 };
+            const direccionCoords = { x: 50, y: 330, size: 12 };
+            const urbanizacionCoords = { x: 50, y: 294, size: 12 };
+            const telefonoCoords = { x: 400, y: 294, size: 12 };
+            const emailCoords = { x: 50, y: 258, size: 12 };
+
+            const declaracionNombreCoords = { x: 70, y: 203, size: 12 };
+            const declaracionDNICoords = { x: 435, y: 203, size: 12 };
+            const declaracionDireccionCoords = { x: 218, y: 188, size: 12 };
+            const declaracionDistritoCoords = { x: 445, y: 188, size: 12 };
+            const declaracionProvinciaCoords = { x: 92, y: 173, size: 12 };
+            const declaracionRegionCoords = { x: 240, y: 173, size: 12 };
+            const PartidoCoords = { x: 150, y: 158, size: 12 };
+
+            // Añadir el texto a las coordenadas especificadas
+            firstPage.drawText(apellidoPaterno, { x: apellidoPaternoCoords.x, y: apellidoPaternoCoords.y, size: apellidoPaternoCoords.size });
+            firstPage.drawText(apellidoMaterno, { x: apellidoMaternoCoords.x, y: apellidoMaternoCoords.y, size: apellidoMaternoCoords.size });
+            firstPage.drawText(nombres, { x: nombresCoords.x, y: nombresCoords.y, size: nombresCoords.size });
+            firstPage.drawText(dni, { x: dniCoords.x, y: dniCoords.y, size: dniCoords.size });
+            firstPage.drawText(fechaNacimiento, { x: fechaNacimientoCoords.x, y: fechaNacimientoCoords.y, size: fechaNacimientoCoords.size });
+            firstPage.drawText(estadoCivil, { x: estadoCivilCoords.x, y: estadoCivilCoords.y, size: estadoCivilCoords.size });
+            firstPage.drawText(sexo, { x: sexoCoords.x, y: sexoCoords.y, size: sexoCoords.size });
+            firstPage.drawText(`${regionNacimiento}, ${provinciaNacimiento}, ${distritoNacimiento}`, { x: lugarNacimientoCoords.x, y: lugarNacimientoCoords.y, size: lugarNacimientoCoords.size });
+
+            firstPage.drawText(region, { x: regionCoords.x, y: regionCoords.y, size: regionCoords.size });
+            firstPage.drawText(provincia, { x: provinciaCoords.x, y: provinciaCoords.y, size: provinciaCoords.size });
+            firstPage.drawText(distrito, { x: distritoCoords.x, y: distritoCoords.y, size: distritoCoords.size });
+            firstPage.drawText(direccion, { x: direccionCoords.x, y: direccionCoords.y, size: direccionCoords.size });
+            firstPage.drawText(urbanizacion, { x: urbanizacionCoords.x, y: urbanizacionCoords.y, size: urbanizacionCoords.size });
+            firstPage.drawText(telefono, { x: telefonoCoords.x, y: telefonoCoords.y, size: telefonoCoords.size });
+            firstPage.drawText(email, { x: emailCoords.x, y: emailCoords.y, size: emailCoords.size });
+
+            firstPage.drawText(`${nombres}, ${apellidoPaterno}, ${apellidoMaterno}`, { x: declaracionNombreCoords.x, y: declaracionNombreCoords.y, size: declaracionNombreCoords.size });
+            firstPage.drawText(dni, { x: declaracionDNICoords.x, y: declaracionDNICoords.y, size: declaracionDNICoords.size });
+            firstPage.drawText(direccion, { x: declaracionDireccionCoords.x, y: declaracionDireccionCoords.y, size: declaracionDireccionCoords.size });
+            firstPage.drawText(distrito, { x: declaracionDistritoCoords.x, y: declaracionDistritoCoords.y, size: declaracionDistritoCoords.size });
+            firstPage.drawText(provincia, { x: declaracionProvinciaCoords.x, y: declaracionProvinciaCoords.y, size: declaracionProvinciaCoords.size });
+            firstPage.drawText(region, { x: declaracionRegionCoords.x, y: declaracionRegionCoords.y, size: declaracionRegionCoords.size });
+            firstPage.drawText(partido, { x: PartidoCoords.x, y: PartidoCoords.y, size: PartidoCoords.size });
+
+            // Serializar el PDF a bytes (un Uint8Array)
+            const pdfBytes = await pdfDoc.save();
+
+            // Guardar el PDF
+            const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+            saveAs(blob, 'ficha_afiliacion.pdf');
+        });
+    </script>
+</body>
+</html>
+
+
+
